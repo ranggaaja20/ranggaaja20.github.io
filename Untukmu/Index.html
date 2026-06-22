@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Cinta Spesial</title>
+    <style>
+        /* CSS untuk tampilan */
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 450px;
+            width: 90%;
+            margin-bottom: 30px;
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: beat 1s infinite;
+            display: inline-block;
+        }
+
+        @keyframes beat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        h1 { color: #d63384; margin-bottom: 10px; }
+
+        .gombal-text {
+            font-size: 20px;
+            color: #444;
+            margin: 25px 0;
+            min-height: 80px;
+            font-style: italic;
+        }
+
+        .btn-ganti {
+            padding: 12px 25px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-ganti:hover { background: #b02a65; transform: scale(1.05); }
+
+        .music-section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Pesan Khusus Untukmu</h1>
+        <div id="teks-gombal" class="gombal-text">
+            "Kamu itu kayak kopi, pait kalau nggak ada kamu, tapi kalau ada kamu... bikin ketagihan."
+        </div>
+        <button class="btn-ganti" onclick="gantiGombalan()">Ganti Gombalan</button>
+    </div>
+
+    <div class="music-section">
+      <audio controls loop>
+    <source src="Gombal – TIPE-X Lirik 🎵 Lagu Ska Indonesia Seru.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+</audio>
+
+    </div>
+
+    <script>
+        // Data kumpulan gombalan
+        const gombalan = [
+            "Kamu tahu nggak bedanya kamu sama jam 12 siang? Kalau jam 12 siang kesiangan, kalau kamu... kesayangan.",
+            "Aku rela jadi kuli bangunan, asal yang aku bangun itu rumah tangga sama kamu.",
+            "Cita-citaku dulu pengen jadi dokter, tapi semenjak ketemu kamu, aku pengennya jadi pendamping hidup kamu aja.",
+            "Kamu itu kayak Google, semua yang aku cari ada di diri kamu.",
+            "Nggak usah janji manis deh, janji setia aja sama aku sampai tua nanti."
+        ];
+
+        // Fungsi untuk mengganti teks secara acak
+        function gantiGombalan() {
+            const randomIndex = Math.floor(Math.random() * gombalan.length);
+            document.getElementById('teks-gombal').innerText = '"' + gombalan[randomIndex] + '"';
+        }
+    </script>
+</body>
+</html>
