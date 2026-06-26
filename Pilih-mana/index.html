@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mendang-Mending Cowok! ⚡</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #fdf6f7; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .card { background: white; padding: 30px; border-radius: 30px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
+        .slide { display: none; }
+        .slide.active { display: block; }
+        h2 { color: #d63384; }
+        button { width: 100%; padding: 15px; margin: 8px 0; border: 2px solid #d63384; border-radius: 15px; background: white; color: #d63384; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #d63384; color: white; }
+        .wa-btn { background: #25d366; color: white; text-decoration: none; display: block; padding: 15px; border-radius: 15px; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
 
+<audio id="musik" loop><source src="Keane - Somewhere Only We Know Official Music Video.mp3" type="audio/mpeg"></audio>
+
+<div class="card">
+    <div id="slide0" class="slide active">
+        <h2>Mendang-Mending! 🤔</h2>
+        <p>Coba pilih yang mana menurut seleramu. Nanti kita lihat hasilnya!</p>
+        <button onclick="mulaiMusik()">Mulai Pilih 🎵</button>
+    </div>
+
+    <div id="slide1" class="slide">
+        <p>1/5 - Mending cowok yang mana?</p>
+        <button onclick="pilih(1, 'Kaya tapi pemalas')">Kaya tapi pemalas</button>
+        <button onclick="pilih(1, 'Sederhana tapi pekerja keras')">Sederhana tapi pekerja keras</button>
+    </div>
+    <div id="slide2" class="slide">
+        <p>2/5 - Mending cowok yang mana?</p>
+        <button onclick="pilih(2, 'Ganteng tapi nakal')">Ganteng tapi nakal</button>
+        <button onclick="pilih(2, 'Jelek tapi sopan')">Jelek tapi sopan</button>
+    </div>
+    <div id="slide3" class="slide">
+        <p>3/5 - Mending cowok yang mana?</p>
+        <button onclick="pilih(3, 'Jelek tapi kurang perhatian')">Jelek tapi kurang perhatian karen kerja</button>
+        <button onclick="pilih(3, 'Ganteng tapi perhatian')">Ganteng tapi perhatian</button>
+    </div>
+    <div id="slide4" class="slide">
+        <p>4/5 - Mending cowok yang mana?</p>
+        <button onclick="pilih(4, 'Perokok')">Yang perokok</button>
+        <button onclick="pilih(4, 'Gak perokok')">Yang gak perokok</button>
+    </div>
+    <div id="slide5" class="slide">
+        <p>5/5 - Mending cowok yang mana?</p>
+        <button onclick="pilih(5, 'Cowok duluan')">Cowok nyatakan cinta dulu</button>
+        <button onclick="pilih(5, 'Cewek duluan')">Cewek bilang duluan</button>
+    </div>
+
+    <div id="slide6" class="slide">
+        <h2>Hasilnya...</h2>
+        <p id="pesan"></p>
+        <a id="wa-link" class="wa-btn" href="#">Kirim Hasil ke WA</a>
+    </div>
+</div>
+
+<script>
+    let pilihanDia = [];
+    function mulaiMusik() { document.getElementById('musik').play(); gantiSlide(0, 1); }
+    function gantiSlide(dari, ke) { document.getElementById('slide'+dari).classList.remove('active'); document.getElementById('slide'+ke).classList.add('active'); }
+    
+    function pilih(no, opsi) {
+        pilihanDia.push(opsi);
+        if(no < 5) gantiSlide(no, no + 1);
+        else {
+            gantiSlide(5, 6);
+            document.getElementById('pesan').innerText = "Ternyata tipe kamu kayak gini ya... menarik banget! 😉";
+            let nomor = "628388227297"; // GANTI NOMOR KAMU
+            let link = "https://wa.me/" + nomor + "?text=" + encodeURIComponent("Hasil mendang-mending pilihanku: " + pilihanDia.join(", "));
+            document.getElementById('wa-link').href = link;
+        }
+    }
+</script>
+</body>
+</html>
