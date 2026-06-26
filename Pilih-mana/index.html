@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mendang-Mending Cowok! ⚡</title>
+    <title>Kuis Seru Kita! ✨</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #fdf6f7; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
         .card { background: white; padding: 30px; border-radius: 30px; width: 90%; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
@@ -17,62 +17,67 @@
 </head>
 <body>
 
-<audio id="musik" loop><source src="Keane - Somewhere Only We Know Official Music Video.mp3" type="audio/mpeg"></audio>
+<audio id="musik" loop><source src="Musik.mp3" type="audio/mpeg"></audio>
 
 <div class="card">
     <div id="slide0" class="slide active">
-        <h2>Mendang-Mending! 🤔</h2>
-        <p>Coba pilih yang mana menurut seleramu. Nanti kita lihat hasilnya!</p>
-        <button onclick="mulaiMusik()">Mulai Pilih 🎵</button>
+        <h2>Yuk, Main Kuis! 🌸</h2>
+        <p>Ada 3 babak seru buat tau seleramu. Siap?</p>
+        <button onclick="mulaiMusik()">Mulai Kuis 🎵</button>
     </div>
 
-    <div id="slide1" class="slide">
-        <p>1/5 - Mending cowok yang mana?</p>
-        <button onclick="pilih(1, 'Kaya tapi pemalas')">Kaya tapi pemalas</button>
-        <button onclick="pilih(1, 'Sederhana tapi pekerja keras')">Sederhana tapi pekerja keras</button>
-    </div>
-    <div id="slide2" class="slide">
-        <p>2/5 - Mending cowok yang mana?</p>
-        <button onclick="pilih(2, 'Ganteng tapi nakal')">Ganteng tapi nakal</button>
-        <button onclick="pilih(2, 'Jelek tapi sopan')">Jelek tapi sopan</button>
-    </div>
-    <div id="slide3" class="slide">
-        <p>3/5 - Mending cowok yang mana?</p>
-        <button onclick="pilih(3, 'Jelek tapi kurang perhatian')">Jelek tapi kurang perhatian karen kerja</button>
-        <button onclick="pilih(3, 'Ganteng tapi perhatian')">Ganteng tapi perhatian</button>
-    </div>
-    <div id="slide4" class="slide">
-        <p>4/5 - Mending cowok yang mana?</p>
-        <button onclick="pilih(4, 'Perokok')">Yang perokok</button>
-        <button onclick="pilih(4, 'Gak perokok')">Yang gak perokok</button>
-    </div>
-    <div id="slide5" class="slide">
-        <p>5/5 - Mending cowok yang mana?</p>
-        <button onclick="pilih(5, 'Cowok duluan')">Cowok nyatakan cinta dulu</button>
-        <button onclick="pilih(5, 'Cewek duluan')">Cewek bilang duluan</button>
-    </div>
+    <!-- Babak 1: Mendang-Mending (1-5) -->
+    <div id="slide1" class="slide"><h3>1/15 - Mendang-Mending</h3><p>Kaya pemalas vs Sederhana pekerja keras?</p>
+        <button onclick="pilih(1, 'Kaya pemalas')">Kaya pemalas</button><button onclick="pilih(1, 'Sederhana pekerja keras')">Sederhana pekerja keras</button></div>
+    <div id="slide2" class="slide"><h3>2/15 - Mendang-Mending</h3><p>Ganteng nakal vs Jelek sopan?</p>
+        <button onclick="pilih(2, 'Ganteng nakal')">Ganteng nakal</button><button onclick="pilih(2, 'Jelek sopan')">Jelek sopan</button></div>
+    <div id="slide3" class="slide"><h3>3/15 - Mendang-Mending</h3><p>Jelek kurang perhatian+kerja keras vs Ganteng perhatian tidak kerja keras?</p>
+        <button onclick="pilih(3, 'Jelek kurang perhatian+kerja keras')">Jelek kurang perhatian</button><button onclick="pilih(3, 'Ganteng perhatian tidak kerja keras')">Ganteng perhatian</button></div>
+    <div id="slide4" class="slide"><h3>4/15 - Mendang-Mending</h3><p>Perokok vs Gak perokok?</p>
+        <button onclick="pilih(4, 'Perokok')">Perokok</button><button onclick="pilih(4, 'Gak perokok')">Gak perokok</button></div>
+    <div id="slide5" class="slide"><h3>5/15 - Mendang-Mending</h3><p>Cowok nyatakan cinta dulu vs Cewek bilang duluan?</p>
+        <button onclick="pilih(5, 'Cowok duluan')">Cowok duluan</button><button onclick="pilih(5, 'Cewek duluan')">Cewek duluan</button></div>
 
-    <div id="slide6" class="slide">
-        <h2>Hasilnya...</h2>
-        <p id="pesan"></p>
+    <!-- Babak 2: Tipe Cowok Idaman -->
+    <div id="slideBabak2" class="slide"><h2>Babak 2: Tipe Cowok Idaman 🧐</h2><button onclick="gantiSlide('Babak2', 6)">Mulai</button></div>
+    <div id="slide6" class="slide"><h3>6/15</h3><p>Lebih suka cowok yang humoris atau pendiam?</p><button onclick="pilih(6, 'Humoris')">Humoris</button><button onclick="pilih(6, 'Pendiam')">Pendiam</button></div>
+    <div id="slide7" class="slide"><h3>7/15</h3><p>Lebih suka cowok yang hobi olahraga atau hobi main game?</p><button onclick="pilih(7, 'Olahraga')">Olahraga</button><button onclick="pilih(7, 'Game')">Game</button></div>
+    <div id="slide8" class="slide"><h3>8/15</h3><p>Lebih suka yang dewasa (kakak-kakak) atau seumuran?</p><button onclick="pilih(8, 'Dewasa')">Dewasa</button><button onclick="pilih(8, 'Seumuran')">Seumuran</button></div>
+    <div id="slide9" class="slide"><h3>9/15</h3><p>Lebih suka yang tipe pemimpin atau tipe santai?</p><button onclick="pilih(9, 'Pemimpin')">Pemimpin</button><button onclick="pilih(9, 'Santai')">Santai</button></div>
+    <div id="slide10" class="slide"><h3>10/15</h3><p>tipe cowok kamu yang mana?</p><button onclick="pilih(10, 'ganteng')">ganteng</button><button onclick="pilih(10, 'biasa aja')">biasa aja</button></div>
+
+    <!-- Babak 3: Seberapa Klik Kita -->
+    <div id="slideBabak3" class="slide"><h2>Babak 3: Seberapa Klik Kita? 💖</h2><button onclick="gantiSlide('Babak3', 11)">Mulai</button></div>
+    <div id="slide11" class="slide"><h3>11/15</h3><p>Netflix atau Jalan-jalan?</p><button onclick="pilih(11, 'Netflix')">Netflix</button><button onclick="pilih(11, 'Jalan-jalan')">Jalan-jalan</button></div>
+    <div id="slide12" class="slide"><h3>12/15</h3><p>Kopi atau Teh?</p><button onclick="pilih(12, 'Kopi')">Kopi</button><button onclick="pilih(12, 'Teh')">Teh</button></div>
+    <div id="slide13" class="slide"><h3>13/15</h3><p>Pantai atau Gunung?</p><button onclick="pilih(13, 'Pantai')">Pantai</button><button onclick="pilih(13, 'Gunung')">Gunung</button></div>
+    <div id="slide14" class="slide"><h3>14/15</h3><p>Pedas atau Manis?</p><button onclick="pilih(14, 'Pedas')">Pedas</button><button onclick="pilih(14, 'Manis')">Manis</button></div>
+    <div id="slide15" class="slide"><h3>15/15</h3><p>Malam atau Pagi?</p><button onclick="pilih(15, 'Malam')">Malam</button><button onclick="pilih(15, 'Pagi')">Pagi</button></div>
+
+    <div id="slide16" class="slide">
+        <h2>Selesai! ✨</h2>
+        <p>Tingkat kecocokan kita: <b id="skor">0%</b></p>
         <a id="wa-link" class="wa-btn" href="#">Kirim Hasil ke WA</a>
     </div>
 </div>
 
 <script>
-    let pilihanDia = [];
+    const seleraKu = {11: 'Jalan-jalan', 12: 'Kopi', 13: 'Pantai', 14: 'Pedas', 15: 'Malam'};
+    let jawabannya = {};
     function mulaiMusik() { document.getElementById('musik').play(); gantiSlide(0, 1); }
     function gantiSlide(dari, ke) { document.getElementById('slide'+dari).classList.remove('active'); document.getElementById('slide'+ke).classList.add('active'); }
-    
     function pilih(no, opsi) {
-        pilihanDia.push(opsi);
-        if(no < 5) gantiSlide(no, no + 1);
+        jawabannya[no] = opsi;
+        if(no == 5) gantiSlide(5, 'Babak2');
+        else if(no == 10) gantiSlide(10, 'Babak3');
+        else if(no < 15) gantiSlide(no, no + 1);
         else {
-            gantiSlide(5, 6);
-            document.getElementById('pesan').innerText = "Ternyata tipe kamu kayak gini ya... menarik banget! 😉";
-            let nomor = "628388227297"; // GANTI NOMOR KAMU
-            let link = "https://wa.me/" + nomor + "?text=" + encodeURIComponent("Hasil mendang-mending pilihanku: " + pilihanDia.join(", "));
-            document.getElementById('wa-link').href = link;
+            let cocok = 0;
+            for(let i=11; i<=15; i++) { if(jawabannya[i] === seleraKu[i]) cocok++; }
+            let persentase = (cocok/5)*100;
+            gantiSlide(15, 16);
+            document.getElementById('skor').innerText = persentase + "%";
+            document.getElementById('wa-link').href = "https://wa.me/628388227297?text=" + encodeURIComponent("Hasil kuis: " + persentase + "% cocok! Detail: " + JSON.stringify(jawabannya));
         }
     }
 </script>
