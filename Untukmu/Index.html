@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesan Spesial</title>
+    <style>
+        body { background: linear-gradient(135deg, #a18cd1, #fbc2eb); display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: sans-serif; text-align: center; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); max-width: 350px; width: 90%; }
+        #teks-gombal { font-size: 18px; color: #444; margin-bottom: 20px; min-height: 60px; }
+        button { padding: 10px 20px; background: #8a2be2; color: white; border: none; border-radius: 20px; cursor: pointer; }
+        .btn-wa { display: none; padding: 15px; background: #25d366; color: white; text-decoration: none; border-radius: 20px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="teks-gombal">Klik tombol di bawah ya! ✨</div>
+    <button id="btn-next" onclick="nextGombal()">Lanjut Baca</button>
+    <a href="https://wa.me/628388227297?text=Aku%20mau%20jawab..." id="btn-wa" class="btn-wa">Sudah punya pacar belum?</a>
+</div>
+
+<div style="margin-top: 20px;">
+    <audio controls autoplay loop>
+        <source src="Wiz Khalifa - See You Again LyricsFt Charlie Puth SIA  Christina Perri, Ellie Goulding, Mix.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    const gombalan = [
+        "Aku nggak minta banyak, cuma mau jadi alasan kamu tersenyum setiap pagi.",
+        "Dunia ini terlalu luas, tapi hatiku cuma cukup buat kamu seorang.",
+        "Tahu nggak kenapa kopi ini pahit? Soalnya manisnya sudah pindah ke senyum kamu.",
+        "Kalau disuruh pilih antara napas atau kamu, aku pilih napas... buat bilang kalau aku sayang kamu.",
+        "Kamu itu seperti buku, semakin dibaca semakin bikin aku nggak mau berhenti."
+    ];
+    
+    let index = 0;
+    function nextGombal() {
+        if (index < gombalan.length) {
+            document.getElementById('teks-gombal').innerText = gombalan[index];
+            index++;
+        } else {
+            document.getElementById('teks-gombal').innerText = "Jadi, boleh aku tanya satu hal?";
+            document.getElementById('btn-next').style.display = 'none';
+            document.getElementById('btn-wa').style.display = 'block';
+        }
+    }
+</script>
+
+</body>
+</html>
