@@ -2,102 +2,96 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spesial Buat Kakak</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; text-align: center; background: #fff0f5; padding: 20px; }
         .slide { display: none; padding: 20px; background: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
         .active { display: block; }
         img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
-        button { margin: 10px; padding: 10px 20px; border: none; border-radius: 10px; background: #ff69b4; color: white; cursor: pointer; }
-        .btn-wa { background: #25d366; text-decoration: none; color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-top: 10px; }
+        textarea { width: 90%; height: 80px; margin: 10px 0; border-radius: 10px; padding: 10px; }
+        button, .btn-wa { margin: 10px; padding: 10px 20px; border: none; border-radius: 10px; background: #ff69b4; color: white; cursor: pointer; text-decoration: none; display: inline-block; }
     </style>
 </head>
 <body>
 
-<!-- Musik (Ganti link di bawah dengan link lagu kamu) -->
-<audio id="myAudio" loop>
-    <source src="CINTA ITU BUTA - ARMADA LYRIC.mp3" type="audio/mpeg">
-</audio>
+<audio id="myAudio" loop><source src="CINTA ITU BUTA - ARMADA LYRIC.mp3" type="audio/mpeg"></audio>
 
-<!-- Slide 0: Start agar musik bisa jalan -->
 <div id="slide0" class="slide active">
     <h3>Hai Kak!</h3>
-    <button onclick="startExperience()">Klik untuk memulai</button>
+    <button onclick="start()">Klik untuk memulai</button>
 </div>
 
-<!-- Slide 1: Pembuka -->
 <div id="slide1" class="slide">
     <img src="IMG_20260628_201947.jpg" alt="Foto">
-    <p>Hai kak, ini aku ada gombalan buat kakak, mudah-mudahan suka ya dengan gombalan buatan ku.</p>
+    <p>Hai kak, ini aku ada gombalan buat kakak, mudah-mudahan suka ya!</p>
     <button onclick="nextSlide(2)">Silakan di lanjut</button>
 </div>
 
-<!-- Slide 2: Gombalan -->
 <div id="slide2" class="slide">
-    <div id="gombalText" style="min-height: 80px;">Loading...</div>
+    <p id="gombalText" style="min-height: 80px;"></p>
     <button onclick="nextGombal()">Lanjut Gombal</button>
 </div>
 
-<!-- Slide 3: Tanya Pacar -->
+<!-- Slide 3: Tanya Status -->
 <div id="slide3" class="slide">
     <p>Kakak udah punya pacar?</p>
-    <button onclick="jawabanPacar('Sudah')">Sudah</button>
-    <button onclick="jawabanPacar('Belum')">Belum</button>
+    <button onclick="pilihPacar('Sudah')">Sudah</button>
+    <button onclick="pilihPacar('Belum')">Belum</button>
 </div>
 
-<!-- Slide 4: Hasil Akhir -->
+<!-- Slide 4: Tembak Pacar (Hanya jika belum punya pacar) -->
 <div id="slide4" class="slide">
-    <p id="hasilText"></p>
-    <a id="btnWa" class="btn-wa" href="#">Kirim Jawaban ke WA</a>
+    <p>Yes berarti aku masih ada kesempatan! Kakak mau gak jadi pacar aku?</p>
+    <button onclick="hasilTembak('Iya')">Iya</button>
+    <button onclick="hasilTembak('Tidak')">Tidak</button>
+</div>
+
+<!-- Slide 5: Input Alasan -->
+<div id="slide5" class="slide">
+    <p id="teksAlasan"></p>
+    <textarea id="alasanInput" placeholder="Tulis alasan kakak di sini..."></textarea><br>
+    <a id="btnWa" class="btn-wa" href="#" onclick="kirimWA()">Kirim Jawaban ke WA</a>
 </div>
 
 <script>
-    let audio = document.getElementById("myAudio");
     let gombalan = [
-        "Kamu tahu nggak kenapa aku kalau lihat kamu harus pakai kacamata? Karena silaunya senyum kamu terlalu terang buat hatiku.",
-        "Aku baru sadar, kalau Google itu pintar banget, tapi dia nggak bisa nemuin apa yang aku cari, yaitu kamu.",
-        "Cita-citaku dulu ingin jadi astronot, tapi sekarang berubah, ingin jadi orang yang selalu ada di samping kamu.",
-        "Kalau kopi ini pahit, berarti dia belum kenal kamu, soalnya lihat kamu aja udah manis banget.",
-        "Kamu itu kayak Wi-Fi ya, soalnya aku selalu ngerasa connect kalau dekat kamu."
+        "Kenapa aku harus pakai kacamata kalau lihat kamu? Karena silaunya senyum kamu terlalu terang.",
+        "Google itu pintar, tapi dia nggak bisa nemuin apa yang aku cari, yaitu kamu.",
+        "Cita-citaku dulu ingin jadi astronot, sekarang cuma ingin ada di samping kamu.",
+        "Kopi ini pahit karena belum kenal kamu, lihat kamu aja udah manis banget.",
+        "Kamu itu kayak Wi-Fi, aku selalu ngerasa connect kalau dekat kamu."
     ];
-    let index = 0;
+    let index = 0, statusPilihan = "", jawabanTembak = "";
 
-    function startExperience() {
-        audio.play();
-        nextSlide(1);
-    }
-
+    function start() { document.getElementById("myAudio").play(); nextSlide(1); }
     function nextSlide(n) {
         document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
         document.getElementById('slide' + n).classList.add('active');
-        if(n === 2) showGombal();
+        if(n === 2) document.getElementById('gombalText').innerText = gombalan[index];
     }
-
-    function showGombal() {
-        document.getElementById('gombalText').innerText = gombalan[index];
-    }
-
     function nextGombal() {
         index++;
-        if(index < gombalan.length) {
-            showGombal();
+        if(index < gombalan.length) document.getElementById('gombalText').innerText = gombalan[index];
+        else nextSlide(3);
+    }
+    function pilihPacar(status) {
+        if(status === 'Sudah') {
+            statusPilihan = "Sudah punya pacar";
+            document.getElementById('teksAlasan').innerText = "Ya kakak udah punya pacar ya, aku berarti lambat ya 🥲. Kenapa ya kak?";
+            nextSlide(5);
         } else {
-            nextSlide(3);
+            nextSlide(4);
         }
     }
-
-    function jawabanPacar(status) {
-        let text = "";
-        if(status === 'Sudah') {
-            text = "Ya kakak udah punya pacar ya, aku berarti lambat ya 🥲. Soalnya aku emang telat menyadari betapa menariknya kakak.";
-        } else {
-            text = "Yes berarti aku masih ada kesempatan dong buat dekati kakak! Kakak mau gak jadi pacar aku?";
-        }
-        
-        document.getElementById('hasilText').innerText = text;
-        document.getElementById('btnWa').href = "https://wa.me/628388227297?text=" + encodeURIComponent(text);
-        nextSlide(4);
+    function hasilTembak(jawaban) {
+        jawabanTembak = jawaban;
+        document.getElementById('teksAlasan').innerText = (jawaban === 'Iya') ? "Wah serius mau? Aku seneng banget! Kenapa kakak mau jadi pacar aku?" : "Yah, gak apa-apa kalau belum mau. Kenapa ya kak?";
+        nextSlide(5);
+    }
+    function kirimWA() {
+        let alasan = document.getElementById('alasanInput').value;
+        let pesan = "Status: " + statusPilihan + (jawabanTembak ? " | Jawaban: " + jawabanTembak : "") + ". Alasannya: " + alasan;
+        document.getElementById('btnWa').href = "https://wa.me/628388227297?text=" + encodeURIComponent(pesan);
     }
 </script>
 
