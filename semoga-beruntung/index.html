@@ -1,1 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spesial Buat Kakak</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; background: #fff0f5; padding: 20px; }
+        .slide { display: none; padding: 20px; background: white; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        .active { display: block; }
+        img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; }
+        button { margin: 10px; padding: 10px 20px; border: none; border-radius: 10px; background: #ff69b4; color: white; cursor: pointer; }
+        .btn-wa { background: #25d366; text-decoration: none; color: white; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-top: 10px; }
+    </style>
+</head>
+<body>
 
+<!-- Musik (Ganti link di bawah dengan link lagu kamu) -->
+<audio id="myAudio" loop>
+    <source src="CINTA ITU BUTA - ARMADA LYRIC.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Slide 0: Start agar musik bisa jalan -->
+<div id="slide0" class="slide active">
+    <h3>Hai Kak!</h3>
+    <button onclick="startExperience()">Klik untuk memulai</button>
+</div>
+
+<!-- Slide 1: Pembuka -->
+<div id="slide1" class="slide">
+    <img src="IMG_20260628_201947.jpg" alt="Foto">
+    <p>Hai kak, ini aku ada gombalan buat kakak, mudah-mudahan suka ya dengan gombalan buatan ku.</p>
+    <button onclick="nextSlide(2)">Silakan di lanjut</button>
+</div>
+
+<!-- Slide 2: Gombalan -->
+<div id="slide2" class="slide">
+    <div id="gombalText" style="min-height: 80px;">Loading...</div>
+    <button onclick="nextGombal()">Lanjut Gombal</button>
+</div>
+
+<!-- Slide 3: Tanya Pacar -->
+<div id="slide3" class="slide">
+    <p>Kakak udah punya pacar?</p>
+    <button onclick="jawabanPacar('Sudah')">Sudah</button>
+    <button onclick="jawabanPacar('Belum')">Belum</button>
+</div>
+
+<!-- Slide 4: Hasil Akhir -->
+<div id="slide4" class="slide">
+    <p id="hasilText"></p>
+    <a id="btnWa" class="btn-wa" href="#">Kirim Jawaban ke WA</a>
+</div>
+
+<script>
+    let audio = document.getElementById("myAudio");
+    let gombalan = [
+        "Kamu tahu nggak kenapa aku kalau lihat kamu harus pakai kacamata? Karena silaunya senyum kamu terlalu terang buat hatiku.",
+        "Aku baru sadar, kalau Google itu pintar banget, tapi dia nggak bisa nemuin apa yang aku cari, yaitu kamu.",
+        "Cita-citaku dulu ingin jadi astronot, tapi sekarang berubah, ingin jadi orang yang selalu ada di samping kamu.",
+        "Kalau kopi ini pahit, berarti dia belum kenal kamu, soalnya lihat kamu aja udah manis banget.",
+        "Kamu itu kayak Wi-Fi ya, soalnya aku selalu ngerasa connect kalau dekat kamu."
+    ];
+    let index = 0;
+
+    function startExperience() {
+        audio.play();
+        nextSlide(1);
+    }
+
+    function nextSlide(n) {
+        document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+        document.getElementById('slide' + n).classList.add('active');
+        if(n === 2) showGombal();
+    }
+
+    function showGombal() {
+        document.getElementById('gombalText').innerText = gombalan[index];
+    }
+
+    function nextGombal() {
+        index++;
+        if(index < gombalan.length) {
+            showGombal();
+        } else {
+            nextSlide(3);
+        }
+    }
+
+    function jawabanPacar(status) {
+        let text = "";
+        if(status === 'Sudah') {
+            text = "Ya kakak udah punya pacar ya, aku berarti lambat ya 🥲. Soalnya aku emang telat menyadari betapa menariknya kakak.";
+        } else {
+            text = "Yes berarti aku masih ada kesempatan dong buat dekati kakak! Kakak mau gak jadi pacar aku?";
+        }
+        
+        document.getElementById('hasilText').innerText = text;
+        document.getElementById('btnWa').href = "https://wa.me/NOMOR_WA_KAMU?text=" + encodeURIComponent(text);
+        nextSlide(4);
+    }
+</script>
+
+</body>
+</html>
