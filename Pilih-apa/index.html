@@ -77,7 +77,7 @@
             let persentase = (cocok/5)*100;
             gantiSlide(15, 16);
             document.getElementById('skor').innerText = persentase + "%";
-            document.getElementById('wa-link').href = "https://wa.me/628388227297?text=" + encodeURIComponent("Hasil kuis: " + persentase + "% cocok! Detail: " + JSON.stringify(jawabannya));
+            document.getElementById('wa-link').href = "https://wa.me/?text=" + encodeURIComponent("Hasil kuis: " + persentase + "% cocok! Detail: " + JSON.stringify(jawabannya));
         }
     }
 </script>
